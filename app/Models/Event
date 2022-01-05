@@ -4,4 +4,28 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+const { Event } = require('objection');
 
+class Person extends Event {
+
+  static get tableName() {
+    return 'persons';
+  }
+  
+  // model's primary key
+  static get idColumn() {
+    return 'id';
+  }
+
+  static get jsonSchema() {
+    return {
+      
+      properties: {
+        id: { type: ['GUID', 'UUID' },
+        name: { type: 'string' },
+        slug: { type: ['GUID', 'string'] },
+        createdAt: { type: ['GUID', 'datetime', 'not null'] },
+        updatedAt: { type: ['GUID', 'datetime', 'not null'] },
+      }
+    };
+  }
